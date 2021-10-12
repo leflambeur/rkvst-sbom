@@ -1,0 +1,40 @@
+# action.yml
+name: 'RKVST SBOM Package'
+description: 'Easily integrate your SBOM into RKVST'
+inputs:
+  command:  # id of input
+    description: 'Event Type'
+    required: true
+    default: 'release'
+  asset_id:
+    description: 'RKVST Asset Identity (assets/{{UUID}})'
+    required: true
+  attrs:
+    description: 'Core Event Attributes'
+    required: true
+  attachments:
+    description: 'List of build artifacts to attach to event'
+    required: true
+  custom_attrs: 
+    description: 'Additional Event Attributes'
+    required: false
+  latest_sbom:
+    description: 'Only for use with Release Event - used if uploaded sbom is not for latest version'
+    required: false
+  custom_asset_attrs:
+    description: 'Only for use with Release Event - Additional Asset Attributes'
+    required: false
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  env:
+    CLIENT_ID: ${{ secrets.rkvst_client_id }}
+    CLIENT_SECRET: ${{ secrets.rkvst_client_secret}}
+  args:
+    - ${{ inputs.command }}
+    - ${{ inputs.asset_id }}
+    - ${{ inputs.attrs }}
+    - ${{ inputs.attachments }}
+    - ${{ inputs.custom_attrs }}
+    - ${{ inputs.latest_sbom }}
+    - ${{ inputs.custom_asset_attrs }}
