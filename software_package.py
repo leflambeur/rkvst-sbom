@@ -22,6 +22,10 @@ class SoftwarePackage:
     @property
     def asset(self):
         return self._asset
+    
+    @property
+    def attachments(self):
+        return self._attachments
 
     # Asset Creation
     def create(
@@ -32,6 +36,7 @@ class SoftwarePackage:
         attachments: Optional[list] = None,
         custom_attrs: Optional[dict] = None,
     ):
+        
 
         attrs = {
             "arc_display_name": sbom_name,
@@ -76,7 +81,8 @@ class SoftwarePackage:
         custom_attrs: Optional[dict] = None,
         custom_asset_attrs: Optional[dict] = None,
     ):
-
+        
+        self._add_attachments(attachments)
         # sbom_name: str,
         # sbom_description: str,
         # sbom_hash: str,
@@ -102,7 +108,15 @@ class SoftwarePackage:
             "sbom_author": sbom["author"],
             "sbom_supplier": sbom["supplier"],
             "sbom_uuid": sbom["uuid"],
-            "arc_attachments": attachments or [],
+            "arc_attachments": [
+                {
+                    "arc_display_name": sbom["description"],
+                    "arc_attachment_identity": attachment["identity"],
+                    "arc_hash_value": attachment["hash"]["value"],
+                    "arc_hash_alg": attachment["hash"]["alg"],
+                }
+                for attachment in self._attachments
+            ],
         }
         if custom_attrs is not None:
             attrs.update(custom_attrs)
@@ -352,3 +366,9 @@ class SoftwarePackage:
         return self.arch.events.create(
             self._asset["identity"], props=props, attrs=attrs, confirm=True
         )
+    
+    def _add_attachments(self, attachments: list):
+        self._attachments = []
+        for attachment in attachments:
+            with open(f"{attachment}", "rb") as fd:
+                self._attachments.append(self.arch.attachments.upload(fd))
