@@ -3,14 +3,14 @@ on: ['push']
 
 jobs:
   generate-sbom:
-    name: syft
+    name: Generate and Publish SBOM
     runs-on: ubuntu-latest
     steps:
       - uses: anchore/sbom-action@v0.3.0
         with:
           image: yewnorosen/rkvst-sbom:latest
           format: cyclonedx
-      - uses: leflambeur/rkvst-sbom@0.0.1
+      - uses: leflambeur/rkvst-sbom@v0.0.1
         env:
           CLIENT_ID: ${{ secrets.CLIENT_ID }}
           CLIENT_SECRET: ${{ secrets.CLIENT_SECRET }}
