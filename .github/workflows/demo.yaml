@@ -10,7 +10,7 @@ jobs:
         with:
           image: yewnorosen/rkvst-sbom:latest
           format: cyclonedx
-      - uses: leflambeur/rkvst-sbom@v0.0.1c
+      - uses: leflambeur/rkvst-sbom@v0.0.1d
         env:
           CLIENT_ID: ${{ secrets.CLIENT_ID }}
           CLIENT_SECRET: ${{ secrets.CLIENT_SECRET }}
