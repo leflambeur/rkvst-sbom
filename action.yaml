@@ -1,6 +1,6 @@
 # action.yml
-name: 'RKVST SBOM Package'
-description: 'Easily integrate your SBOM into RKVST'
+name: 'yewnorosen-test'
+description: 'something-something'
 inputs:
   command:  # id of input
     description: 'Event Type'
