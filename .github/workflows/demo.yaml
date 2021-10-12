@@ -1,0 +1,22 @@
+name: local_check
+on: ['push']
+
+jobs:
+  generate-sbom:
+    name: syft
+    runs-on: ubuntu-latest
+    steps:
+      - uses: anchore/sbom-action@v0.3.0
+        with:
+          image: yewnorosen/rkvst-sbom:latest
+          format: cyclonedx
+      - uses: leflambeur/rkvst-sbom@0.0.1
+        env:
+          CLIENT_ID: ${{ secrets.CLIENT_ID }}
+          CLIENT_SECRET: ${{ secrets.CLIENT_SECRET }}
+        with:
+          command: release
+          asset_id: assets/8477ddbd-3af2-434a-83ec-18c0bb3bd956
+          attrs: '{"name": "RKVST GH Action", "description": "v0.0.1 Release - RKVST Action Test", "hash": "a314fc2dc663ae7a6b6bc6787594057396e6b3f569cd50fd5ddb4d1bbafd2b6a", "version": "v0.0.1", "author": "leflambeur", "supplier": "leflambeur", "uuid": "f32a2649b705"}'
+          attachments: '[./rkvst-sbom-sbom.cyclonedx.json,]'
+          latest_sbom: '{"name": "RKVST GH Action", "description": "v0.0.1 Release - RKVST Action Test", "hash": "a314fc2dc663ae7a6b6bc6787594057396e6b3f569cd50fd5ddb4d1bbafd2b6a", "version": "v0.0.1", "author": "leflambeur", "supplier": "leflambeur", "uuid": "f32a2649b705"}'

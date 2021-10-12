@@ -13,7 +13,7 @@ inputs:
     description: 'Core Event Attributes'
     required: true
   attachments:
-    description: 'List of build artifacts to attach to event'
+    description: 'Array of build artifacts to attach to event'
     required: true
   custom_attrs: 
     description: 'Additional Event Attributes'
@@ -27,9 +27,6 @@ inputs:
 runs:
   using: 'docker'
   image: 'Dockerfile'
-  env:
-    CLIENT_ID: ${{ secrets.rkvst_client_id }}
-    CLIENT_SECRET: ${{ secrets.rkvst_client_secret}}
   args:
     - ${{ inputs.command }}
     - ${{ inputs.asset_id }}
