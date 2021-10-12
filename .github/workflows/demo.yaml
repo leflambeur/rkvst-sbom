@@ -18,5 +18,5 @@ jobs:
           command: release
           asset_id: assets/8477ddbd-3af2-434a-83ec-18c0bb3bd956
           attrs: '{"name": "RKVST GH Action", "description": "v0.0.1 Release - RKVST Action Test", "hash": "a314fc2dc663ae7a6b6bc6787594057396e6b3f569cd50fd5ddb4d1bbafd2b6a", "version": "v0.0.1", "author": "leflambeur", "supplier": "leflambeur", "uuid": "f32a2649b705"}'
-          attachments: '[./rkvst-sbom-sbom.cyclonedx.json,]'
+          attachments: '[yewnorosen-rkvst-sbom_latest.cyclonedx]'
           latest_sbom: '{"name": "RKVST GH Action", "description": "v0.0.1 Release - RKVST Action Test", "hash": "a314fc2dc663ae7a6b6bc6787594057396e6b3f569cd50fd5ddb4d1bbafd2b6a", "version": "v0.0.1", "author": "leflambeur", "supplier": "leflambeur", "uuid": "f32a2649b705"}'
