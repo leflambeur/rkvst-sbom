@@ -53,7 +53,9 @@ def main():
 
     package.read(asset_id)
 
-    print("Doing" + command)
+    print("Doing " + command)
+    
+    print(sys.argv)
     
     match command:
 
