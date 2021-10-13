@@ -12,7 +12,7 @@ inputs:
   attrs:
     description: 'Core Event Attributes'
     required: false
-    default: '{"name": "${{ github.repository }}", "description": "${{ inputs.command }} "${GITHUB_REF#refs/*/}" - ${{ github.repository }}", "hash": "${{ github.sha }}", "version": "${GITHUB_REF#refs/*/}", "author": "${{ github.actor }}", "supplier": "${{ github.repository_owner }}", "uuid": "${{ github.repository }}"}'
+    default: '{"name": "${{ github.repository }}", "description": "${{ inputs.command }} "${{ GITHUB_REF#refs/*/ }}" - ${{ github.repository }}", "hash": "${{ github.sha }}", "version": "${{ GITHUB_REF#refs/*/ }}", "author": "${{ github.actor }}", "supplier": "${{ github.repository_owner }}", "uuid": "${{ github.repository }}"}'
   attachments:
     description: 'Array of build artifacts to attach to event'
     required: false
