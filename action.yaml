@@ -11,11 +11,11 @@ inputs:
     required: true
   attrs:
     description: 'Core Event Attributes'
-    required: true
-    default: '{}'
+    required: false
+    default: '{"name": "${{ github.repository }}", "description": "${{ inputs.command }} ${{ github.ref#refs/*/ }} - ${{ github.repository }}", "hash": "${{ github.sha }}", "version": "${{ github.ref#refs/*/ }}", "author": "${{ github.actor }}", "supplier": "${{ github.repository_owner }}", "uuid": "${{ github.repository }}"}'
   attachments:
     description: 'Array of build artifacts to attach to event'
-    required: true
+    required: false
     default: '[]'
   custom_attrs: 
     description: 'Additional Event Attributes'
