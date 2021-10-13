@@ -24,7 +24,7 @@ inputs:
   latest_sbom:
     description: 'Only for use with Release Event - used if uploaded sbom is not for latest version'
     required: false
-    default: '{}'
+    default: '{"name": "${{ github.repository }}", "description": "${{ github.event.release.tag_name }} - ${{ github.repository }}", "hash": "${{ github.sha }}", "version": "${{ github.event.release.tag_name }}", "author": "${{ github.actor }}", "supplier": "${{ github.repository_owner }}", "uuid": "${{ github.repository }}"}'
   custom_asset_attrs:
     description: 'Only for use with Release Event - Additional Asset Attributes'
     required: false
