@@ -162,7 +162,15 @@ class SoftwarePackage:
             "sbom_planned_component": sbom_planned["name"],
             "sbom_planned_version": sbom_planned["version"],
             "sbom_planned_reference": sbom_planned["reference"],
-            "arc_attachments": attachments or [],
+            "arc_attachments": [
+                {
+                    "arc_display_name": sbom_planned["description"],
+                    "arc_attachment_identity": attachment["identity"],
+                    "arc_hash_value": attachment["hash"]["value"],
+                    "arc_hash_alg": attachment["hash"]["alg"],
+                }
+                for attachment in self._attachments
+            ],
         }
         if custom_attrs is not None:
             attrs.update(custom_attrs)
@@ -193,7 +201,15 @@ class SoftwarePackage:
             "sbom_accepted_version": sbom_accepted["version"],
             "sbom_accepted_approver": sbom_accepted["approver"],
             "sbom_accepted_vuln_reference": sbom_accepted["reference"],
-            "arc_attachments": attachments or [],
+            "arc_attachments": [
+                {
+                    "arc_display_name": sbom_accepted["description"],
+                    "arc_attachment_identity": attachment["identity"],
+                    "arc_hash_value": attachment["hash"]["value"],
+                    "arc_hash_alg": attachment["hash"]["alg"],
+                }
+                for attachment in self._attachments
+            ],
         }
         if custom_attrs is not None:
             attrs.update(custom_attrs)
@@ -225,7 +241,15 @@ class SoftwarePackage:
             "sbom_patch_author": sbom_patch["author"],
             "sbom_patch_supplier": sbom_patch["supplier"],
             "sbom_patch_uuid": sbom_patch["uuid"],
-            "arc_attachments": attachments or [],
+            "arc_attachments": [
+                {
+                    "arc_display_name": sbom_patch["description"],
+                    "arc_attachment_identity": attachment["identity"],
+                    "arc_hash_value": attachment["hash"]["value"],
+                    "arc_hash_alg": attachment["hash"]["alg"],
+                }
+                for attachment in self._attachments
+            ],
         }
         if custom_attrs is not None:
             attrs.update(custom_attrs)
@@ -257,7 +281,15 @@ class SoftwarePackage:
             "sbom_patch_supplier": sbom_patch["supplier"],
             "sbom_patch_uuid": sbom_patch["uuid"],
             "sbom_patch_vuln_reference": sbom_patch["reference"],
-            "arc_attachments": attachments or [],
+            "arc_attachments": [
+                {
+                    "arc_display_name": sbom_patch["description"],
+                    "arc_attachment_identity": attachment["identity"],
+                    "arc_hash_value": attachment["hash"]["value"],
+                    "arc_hash_alg": attachment["hash"]["alg"],
+                }
+                for attachment in self._attachments
+            ],
         }
 
         if custom_attrs is not None:
@@ -293,7 +325,15 @@ class SoftwarePackage:
             "vuln_author": vuln["author"],
             "vuln_target_component": vuln["target_component"],
             "vuln_target_version": vuln["target_version"],
-            "arc_attachments": attachments or [],
+            "arc_attachments": [
+                {
+                    "arc_display_name": vuln["description"],
+                    "arc_attachment_identity": attachment["identity"],
+                    "arc_hash_value": attachment["hash"]["value"],
+                    "arc_hash_alg": attachment["hash"]["alg"],
+                }
+                for attachment in self._attachments
+            ],
         }
 
         if custom_attrs is not None:
@@ -327,7 +367,15 @@ class SoftwarePackage:
             "vuln_author": vuln["author"],
             "vuln_target_component": vuln["target_component"],
             "vuln_target_version": vuln["target_version"],
-            "arc_attachments": attachments or [],
+            "arc_attachments": [
+                {
+                    "arc_display_name": vuln["description"],
+                    "arc_attachment_identity": attachment["identity"],
+                    "arc_hash_value": attachment["hash"]["value"],
+                    "arc_hash_alg": attachment["hash"]["alg"],
+                }
+                for attachment in self._attachments
+            ],
         }
         if custom_attrs is not None:
             attrs.update(custom_attrs)
@@ -358,7 +406,15 @@ class SoftwarePackage:
             "sbom_eol_target_version": sbom_eol["target_version"],
             "sbom_eol_target_uuid": sbom_eol["target_uuid"],
             "sbom_eol_target_date": sbom_eol["target_date"],
-            "arc_attachments": attachments or [],
+            "arc_attachments": [
+                {
+                    "arc_display_name": sbom_eol["description"],
+                    "arc_attachment_identity": attachment["identity"],
+                    "arc_hash_value": attachment["hash"]["value"],
+                    "arc_hash_alg": attachment["hash"]["alg"],
+                }
+                for attachment in self._attachments
+            ],
         }
         if custom_attrs is not None:
             attrs.update(custom_attrs)

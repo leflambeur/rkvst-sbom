@@ -54,9 +54,7 @@ def main():
     package.read(asset_id)
 
     print("Doing " + command)
-    
-    print(sys.argv)
-    
+     
     match command:
 
         case 'release':
@@ -65,57 +63,57 @@ def main():
             custom_attrs=json.loads(sys.argv[5])
             latest_sbom=json.loads(sys.argv[6])
             custom_asset_attrs=json.loads(sys.argv[7])
-            package.release(attrs, attachments=attachments, custom_attrs=custom_attrs, latest_sbom=latest_sbom, custom_asset_attrs=custom_asset_attrs)
-            return("Release Complete")
+            release = package.release(attrs, attachments=attachments, custom_attrs=custom_attrs, latest_sbom=latest_sbom, custom_asset_attrs=custom_asset_attrs)
+            return("Release Complete\n\n" + release)
 
         case 'release_plan':
             attrs=json.loads(sys.argv[3])
             attachments=json.loads(sys.argv[4])
             custom_attrs=json.loads(sys.argv[5])
-            package.release_plan(attrs, attachments=attachments, custom_attrs=custom_attrs)
-            return("Release Plan Complete")
+            release_plan = package.release_plan(attrs, attachments=attachments, custom_attrs=custom_attrs)
+            return("Release Plan Complete\n\n" + release_plan)
         
         case 'release_accepted':
             attrs=json.loads(sys.argv[3])
             attachments=json.loads(sys.argv[4])
             custom_attrs=json.loads(sys.argv[5])
-            package.release_accepted(attrs, attachments=attachments, custom_attrs=custom_attrs)
-            return("Release Accepted Complete")
+            release_accepted = package.release_accepted(attrs, attachments=attachments, custom_attrs=custom_attrs)
+            return("Release Accepted Complete\n\n" + release_accepted)
 
         case 'patch':
             attrs=json.loads(sys.argv[3])
             attachments=json.loads(sys.argv[4])
             custom_attrs=json.loads(sys.argv[5])
-            package.patch(attrs, attachments=attachments, custom_attrs=custom_attrs)
-            return("Patch Complete")
+            patch = package.patch(attrs, attachments=attachments, custom_attrs=custom_attrs)
+            return("Patch Complete\n\n" + patch)
 
         case 'private_patch':
             attrs=json.loads(sys.argv[3])
             attachments=json.loads(sys.argv[4])
             custom_attrs=json.loads(sys.argv[5])
-            package.private_patch(attrs, attachments=attachments, custom_attrs=custom_attrs)
-            return("Private Patch Complete")
+            private_patch = package.private_patch(attrs, attachments=attachments, custom_attrs=custom_attrs)
+            return("Private Patch Complete\n\n" + private_patch)
         
         case 'vuln_disclosure':
             attrs=json.loads(sys.argv[3])
             attachments=json.loads(sys.argv[4])
             custom_attrs=json.loads(sys.argv[5])
-            package.vuln_disclosure(attrs, attachments=attachments, custom_attrs=custom_attrs)
-            return("Vulnerability Disclosure Complete")
+            vuln_disclosure = package.vuln_disclosure(attrs, attachments=attachments, custom_attrs=custom_attrs)
+            return("Vulnerability Disclosure Complete\n\n" + vuln_disclosure)
 
         case 'vuln_update':
             attrs=json.loads(sys.argv[3])
             attachments=json.loads(sys.argv[4])
             custom_attrs=json.loads(sys.argv[5])
-            package.vuln_update(attrs, attachments=attachments, custom_attrs=custom_attrs)
-            return("Vulnerability Update Complete")
+            vuln_update = package.vuln_update(attrs, attachments=attachments, custom_attrs=custom_attrs)
+            return("Vulnerability Update Complete\n\n" + vuln_update)
 
         case 'deprecation':
             attrs=json.loads(sys.argv[3])
             attachments=json.loads(sys.argv[4])
             custom_attrs=json.loads(sys.argv[5])
-            package.deprecation(attrs, attachments=attachments, custom_attrs=custom_attrs)
-            return("Deprecation Complete")
+            deprecation = package.deprecation(attrs, attachments=attachments, custom_attrs=custom_attrs)
+            return("Deprecation Complete\n\n" + deprecation)
 
 if __name__ == "__main__":
     main()
