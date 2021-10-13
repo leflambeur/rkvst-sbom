@@ -25,4 +25,4 @@ jobs:
            command: release
            asset_id: assets/8477ddbd-3af2-434a-83ec-18c0bb3bd956
            attachments: '["yewnorosen-rkvst-sbom_latest.cyclonedx/yewnorosen-rkvst-sbom_latest.cyclonedx"]'
-           latest_sbom: '{"name": "${{ github.repository }}", "description": "${{ inputs.command }} ${{ GITHUB_REF#refs/*/ }} - ${{ github.repository }}", "hash": "${{ github.sha }}", "version": "${{ GITHUB_REF#refs/*/}}", "author": "${{ github.actor }}", "supplier": "${{ github.repository_owner }}", "uuid": "${{ github.repository }}"}'
+           latest_sbom: '{"name": "${{ github.repository }}", "description": "${{ inputs.command }} ${{ github.event.release.tag_name }} - ${{ github.repository }}", "hash": "${{ github.sha }}", "version": "${{ github.event.release.tag_name }}", "author": "${{ github.actor }}", "supplier": "${{ github.repository_owner }}", "uuid": "${{ github.repository }}"}'
