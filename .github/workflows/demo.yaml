@@ -12,18 +12,18 @@ jobs:
           format: cyclonedx
           sbom-artifact-match: ".*\\.spdx$"
           
- publish-sbom:
-   name: Publish SBOM to RKVST
-   runs-on: ubuntu-latest
-   steps:
-      - uses: actions/download-artifact@v2
-      - uses: leflambeur/rkvst-sbom@v0.0.1f
-        env:
-          CLIENT_ID: ${{ secrets.CLIENT_ID }}
-          CLIENT_SECRET: ${{ secrets.CLIENT_SECRET }}
-        with:
-          command: release
-          asset_id: assets/8477ddbd-3af2-434a-83ec-18c0bb3bd956
-          attrs: '{"name": "RKVST GH Action", "description": "v0.0.1 Release - RKVST Action Test", "hash": "a314fc2dc663ae7a6b6bc6787594057396e6b3f569cd50fd5ddb4d1bbafd2b6a", "version": "v0.0.1", "author": "leflambeur", "supplier": "leflambeur", "uuid": "f32a2649b705"}'
-          attachments: '["yewnorosen-rkvst-sbom_latest.cyclonedx"]'
-          latest_sbom: '{"name": "RKVST GH Action", "description": "v0.0.1 Release - RKVST Action Test", "hash": "a314fc2dc663ae7a6b6bc6787594057396e6b3f569cd50fd5ddb4d1bbafd2b6a", "version": "v0.0.1", "author": "leflambeur", "supplier": "leflambeur", "uuid": "f32a2649b705"}'
+  publish-sbom:
+    name: Publish SBOM to RKVST
+    runs-on: ubuntu-latest
+    steps:
+       - uses: actions/download-artifact@v2
+       - uses: leflambeur/rkvst-sbom@v0.0.1f
+         env:
+           CLIENT_ID: ${{ secrets.CLIENT_ID }}
+           CLIENT_SECRET: ${{ secrets.CLIENT_SECRET }}
+         with:
+           command: release
+           asset_id: assets/8477ddbd-3af2-434a-83ec-18c0bb3bd956
+           attrs: '{"name": "RKVST GH Action", "description": "v0.0.1 Release - RKVST Action Test", "hash": "a314fc2dc663ae7a6b6bc6787594057396e6b3f569cd50fd5ddb4d1bbafd2b6a", "version": "v0.0.1", "author": "leflambeur", "supplier": "leflambeur", "uuid": "f32a2649b705"}'
+           attachments: '["yewnorosen-rkvst-sbom_latest.cyclonedx"]'
+           latest_sbom: '{"name": "RKVST GH Action", "description": "v0.0.1 Release - RKVST Action Test", "hash": "a314fc2dc663ae7a6b6bc6787594057396e6b3f569cd50fd5ddb4d1bbafd2b6a", "version": "v0.0.1", "author": "leflambeur", "supplier": "leflambeur", "uuid": "f32a2649b705"}'
