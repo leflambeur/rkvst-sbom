@@ -1,5 +1,5 @@
 name: local_check
-on: ['push']
+on: ['release']
 
 jobs:
   generate-sbom:
