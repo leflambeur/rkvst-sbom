@@ -148,6 +148,7 @@ class SoftwarePackage:
         attachments: Optional[list] = None,
         custom_attrs: Optional[dict] = None,
     ):
+        self._add_attachments(attachments)
 
         props = {
             "operation": "Record",
@@ -186,6 +187,7 @@ class SoftwarePackage:
         attachments: Optional[list] = None,
         custom_attrs: Optional[dict] = None,
     ):
+        self._add_attachments(attachments)
 
         props = {
             "operation": "Record",
@@ -226,6 +228,7 @@ class SoftwarePackage:
         attachments: Optional[list] = None,
         custom_attrs: Optional[dict] = None,
     ):
+        self._add_attachments(attachments)
 
         props = {
             "operation": "Record",
@@ -265,6 +268,7 @@ class SoftwarePackage:
         attachments: Optional[list] = None,
         custom_attrs: Optional[dict] = None,
     ):
+        self._add_attachments(attachments)
 
         props = {
             "operation": "Record",
@@ -307,6 +311,7 @@ class SoftwarePackage:
         attachments: Optional[list] = None,
         custom_attrs: Optional[dict],
     ):
+        self._add_attachments(attachments)
 
         props = {
             "operation": "Record",
@@ -349,6 +354,7 @@ class SoftwarePackage:
         attachments: Optional[list] = None,
         custom_attrs: Optional[dict] = None,
     ):
+        self._add_attachments(attachments)
 
         props = {
             "operation": "Record",
@@ -392,7 +398,8 @@ class SoftwarePackage:
         attachments: Optional[list] = None,
         custom_attrs: Optional[dict] = None,
     ):
-
+        self._add_attachments(attachments)
+        
         props = {
             "operation": "Record",
             "behaviour": "RecordEvidence",

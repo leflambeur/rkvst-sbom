@@ -58,62 +58,62 @@ def main():
     match command:
 
         case 'release':
-            attrs=json.loads(sys.argv[3])
+            sbom=json.loads(sys.argv[3])
             attachments=json.loads(sys.argv[4])
             custom_attrs=json.loads(sys.argv[5])
             latest_sbom=json.loads(sys.argv[6])
             custom_asset_attrs=json.loads(sys.argv[7])
-            release = package.release(attrs, attachments=attachments, custom_attrs=custom_attrs, latest_sbom=latest_sbom, custom_asset_attrs=custom_asset_attrs)
-            return("Release Complete\n\n" + release)
+            release = package.release(sbom=sbom, attachments=attachments, custom_attrs=custom_attrs, latest_sbom=latest_sbom, custom_asset_attrs=custom_asset_attrs)
+            return("Release Complete\n\n" + str(release))
 
         case 'release_plan':
-            attrs=json.loads(sys.argv[3])
+            sbom_planned=json.loads(sys.argv[3])
             attachments=json.loads(sys.argv[4])
             custom_attrs=json.loads(sys.argv[5])
-            release_plan = package.release_plan(attrs, attachments=attachments, custom_attrs=custom_attrs)
-            return("Release Plan Complete\n\n" + release_plan)
+            release_plan = package.release_plan(sbom_planned=sbom_planned, attachments=attachments, custom_attrs=custom_attrs)
+            return("Release Plan Complete\n\n" + str(release_plan))
         
         case 'release_accepted':
-            attrs=json.loads(sys.argv[3])
+            sbom_accepted=json.loads(sys.argv[3])
             attachments=json.loads(sys.argv[4])
             custom_attrs=json.loads(sys.argv[5])
-            release_accepted = package.release_accepted(attrs, attachments=attachments, custom_attrs=custom_attrs)
-            return("Release Accepted Complete\n\n" + release_accepted)
+            release_accepted = package.release_accepted(sbom_accepted=sbom_accepted, attachments=attachments, custom_attrs=custom_attrs)
+            return("Release Accepted Complete\n\n" + str(release_accepted))
 
         case 'patch':
-            attrs=json.loads(sys.argv[3])
+            sbom_patch=json.loads(sys.argv[3])
             attachments=json.loads(sys.argv[4])
             custom_attrs=json.loads(sys.argv[5])
-            patch = package.patch(attrs, attachments=attachments, custom_attrs=custom_attrs)
-            return("Patch Complete\n\n" + patch)
+            patch = package.patch(sbom_patch=sbom_patch, attachments=attachments, custom_attrs=custom_attrs)
+            return("Patch Complete\n\n" + str(patch))
 
         case 'private_patch':
-            attrs=json.loads(sys.argv[3])
+            sbom_patch=json.loads(sys.argv[3])
             attachments=json.loads(sys.argv[4])
             custom_attrs=json.loads(sys.argv[5])
-            private_patch = package.private_patch(attrs, attachments=attachments, custom_attrs=custom_attrs)
-            return("Private Patch Complete\n\n" + private_patch)
+            private_patch = package.private_patch(sbom_patch=sbom_patch, attachments=attachments, custom_attrs=custom_attrs)
+            return("Private Patch Complete\n\n" + str(private_patch))
         
         case 'vuln_disclosure':
-            attrs=json.loads(sys.argv[3])
+            vuln=json.loads(sys.argv[3])
             attachments=json.loads(sys.argv[4])
             custom_attrs=json.loads(sys.argv[5])
-            vuln_disclosure = package.vuln_disclosure(attrs, attachments=attachments, custom_attrs=custom_attrs)
-            return("Vulnerability Disclosure Complete\n\n" + vuln_disclosure)
+            vuln_disclosure = package.vuln_disclosure(vuln=vuln, attachments=attachments, custom_attrs=custom_attrs)
+            return("Vulnerability Disclosure Complete\n\n" + str(vuln_disclosure))
 
         case 'vuln_update':
-            attrs=json.loads(sys.argv[3])
+            vuln=json.loads(sys.argv[3])
             attachments=json.loads(sys.argv[4])
             custom_attrs=json.loads(sys.argv[5])
-            vuln_update = package.vuln_update(attrs, attachments=attachments, custom_attrs=custom_attrs)
-            return("Vulnerability Update Complete\n\n" + vuln_update)
+            vuln_update = package.vuln_update(vuln=vuln, attachments=attachments, custom_attrs=custom_attrs)
+            return("Vulnerability Update Complete\n\n" + str(vuln_update))
 
         case 'deprecation':
-            attrs=json.loads(sys.argv[3])
+            sbom_eol=json.loads(sys.argv[3])
             attachments=json.loads(sys.argv[4])
             custom_attrs=json.loads(sys.argv[5])
-            deprecation = package.deprecation(attrs, attachments=attachments, custom_attrs=custom_attrs)
-            return("Deprecation Complete\n\n" + deprecation)
+            deprecation = package.deprecation(sbom_eol=sbom_eol, attachments=attachments, custom_attrs=custom_attrs)
+            return("Deprecation Complete\n\n" + str(deprecation))
 
 if __name__ == "__main__":
     main()
