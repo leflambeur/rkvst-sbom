@@ -12,7 +12,7 @@ inputs:
   attrs:
     description: 'Core Event Attributes'
     required: true
-    default: '{"name": "${{ github.repository }}", "description": "${{ inputs.command }} ${{ github.event.release.tag_name }} - ${{ github.repository }}", "hash": "${{ github.sha }}", "version": "${{ github.event.release.tag_name }}", "author": "${{ github.actor }}", "supplier": "${{ github.repository_owner }}", "uuid": "${{ github.repository }}"}'
+    default: '{"name": "${{ github.repository }}", "description": "${{ env.COMMAND }} ${{ github.event.release.tag_name }} - ${{ github.repository }}", "hash": "${{ github.sha }}", "version": "${{ github.event.release.tag_name }}", "author": "${{ github.actor }}", "supplier": "${{ github.repository_owner }}", "uuid": "${{ github.repository }}"}'
   attachments:
     description: 'Array of build artifacts to attach to event'
     required: true
