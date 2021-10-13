@@ -10,6 +10,7 @@ jobs:
         with:
           image: yewnorosen/rkvst-sbom:latest
           format: cyclonedx
+          sbom-artifact-match: ".*\\.spdx$"
       - uses: leflambeur/rkvst-sbom@v0.0.1f
         env:
           CLIENT_ID: ${{ secrets.CLIENT_ID }}
