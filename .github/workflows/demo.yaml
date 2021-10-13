@@ -27,3 +27,5 @@ jobs:
            attrs: '{"name": "RKVST GH Action", "description": "v0.0.1 Release - RKVST Action Test", "hash": "a314fc2dc663ae7a6b6bc6787594057396e6b3f569cd50fd5ddb4d1bbafd2b6a", "version": "v0.0.1", "author": "leflambeur", "supplier": "leflambeur", "uuid": "f32a2649b705"}'
            attachments: '["yewnorosen-rkvst-sbom_latest.cyclonedx/yewnorosen-rkvst-sbom_latest.cyclonedx"]'
            latest_sbom: '{"name": "RKVST GH Action", "description": "v0.0.1 Release - RKVST Action Test", "hash": "a314fc2dc663ae7a6b6bc6787594057396e6b3f569cd50fd5ddb4d1bbafd2b6a", "version": "v0.0.1", "author": "leflambeur", "supplier": "leflambeur", "uuid": "f32a2649b705"}'
+           custom_attrs: '{"random_attribute": "some_value"}'
+           custom_asset_attrs: '{"random_attribute": "some_value"}'
