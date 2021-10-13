@@ -11,7 +11,7 @@ inputs:
     required: true
   attrs:
     description: 'Core Event Attributes'
-    required: false
+    required: true
     default: '{"name": "${{ github.repository }}", "description": "${{ inputs.command }} ${{ github.event.release.tag_name }} - ${{ github.repository }}", "hash": "${{ github.sha }}", "version": "${{ github.event.release.tag_name }}", "author": "${{ github.actor }}", "supplier": "${{ github.repository_owner }}", "uuid": "${{ github.repository }}"}'
   attachments:
     description: 'Array of build artifacts to attach to event'

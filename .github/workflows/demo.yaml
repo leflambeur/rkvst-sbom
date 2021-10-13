@@ -1,4 +1,4 @@
-name: local_check
+name: Release
 on: ['release']
 
 jobs:
@@ -10,14 +10,13 @@ jobs:
         with:
           image: yewnorosen/rkvst-sbom:latest
           format: cyclonedx
-          sbom-artifact-match: ".*\\.spdx$"
           
   publish-sbom:
     name: Publish SBOM to RKVST
     runs-on: ubuntu-latest
     steps:
        - uses: actions/download-artifact@v2
-       - uses: leflambeur/rkvst-sbom@v0.0.1i
+       - uses: leflambeur/rkvst-sbom@${{ github.event.release.tag_name }}
          env:
            CLIENT_ID: ${{ secrets.CLIENT_ID }}
            CLIENT_SECRET: ${{ secrets.CLIENT_SECRET }}
