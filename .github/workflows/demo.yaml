@@ -18,7 +18,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
        - uses: actions/download-artifact@v2
-       - uses: leflambeur/rkvst-sbom@v0.0.1t
+       - uses: leflambeur/rkvst-sbom@v0.0.2d
          env:
            CLIENT_ID: ${{ secrets.QUINT_CLIENT_ID }}
            CLIENT_SECRET: ${{ secrets.QUINT_CLIENT_SECRET }}
