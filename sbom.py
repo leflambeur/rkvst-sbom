@@ -36,7 +36,9 @@ def main():
     command = sys.argv[1]
     asset_id = sys.argv[2]
     try:
-            authtoken = generate_token()
+            authtoken = "eyJhbGciOiJSUzI1NiIsImtpZCI6InN0dW50aWRwIiwidHlwIjoiSldUIn0.eyJhdWQiOiJzdHVudC1pZHAiLCJlbWFpbCI6InN0dW50LWlkcEBqaXRzdWluLmNvbSIsImV4cCI6MTY2Njc5ODgxOCwiaWF0IjoxNjM1MjYyODE4LCJpc3MiOiJzdHVudC1pZHBAaml0c3Vpbi5jb20iLCJqaXRfdGllciI6IlBSRU1JVU0iLCJuYW1lIjoic3R1bnQtaWRwQGppdHN1aW4uY29tIiwic3ViIjoic3R1bnQtaWRwQGppdHN1aW4uY29tIn0.MT5xZcK1grk4HW1-gzwoqysyndl5kOfGU_vU3WcBSTufod4yi7bsUM4lbrNEypUYOeNsE0MH_OOrb4xuX8HEF39RnkMqRfInAZvKBmF6JsLTtlllxyYKY6QNbcxntmZdkkTMiE6zBj3qEuU1YVHzyXUEp4q9Gw0ge-zqd6R_zfgxbC--zE0t9BYek2orWRvy_wbW71F2JjFEizxZAHbh9RG_u-N0oxdybsTp36-cRCYgRgCZ7tvTLgMJyFgSGIPHL04k6y0YiJ4Y6xBql7NyHJ8SjF-8gIU5QSCpmKZh8SgsT925yG6D_Vmx5Ij7lbadX0UVCAw4w2Ptj_bZ8Gn3WRUiYP8bjaM66UQaboND3OEfNDPcCD7Ar5UjY5RGCWNyt5-zXtaQel21bDvVY3kj0OqB7iOYkibdGkSc3r9F0ZUZR9oezoVIL4bgmMoN8ZTC-5p7H3tn4YWxoREiv-FVtgygMiVQsU5zy_zNJ5rxGma5y1pKApmn10mFe8ZR_8IM5HCIVNjJkghNeA6PwBQACyK1PJTkYjYcK2Mmhmnt1G6exJkbvljB5Snw6_YS7GXtsI0YCQXlyXzj8ZqDmFTAYZXRtpp6USNd3I0XmbA7m6DDGOtsJQDPUAZVoOZEs-9tdlqm34qEyh8o9_t_bKetPZ8aXDUO06qrCTvPhy-nAbA"
+
+
     except:
         exit(
             "ERROR: Auth token not found. Please check your CLIENT_ID and AUTH_TOKEN."
