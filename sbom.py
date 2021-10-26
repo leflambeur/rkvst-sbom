@@ -25,10 +25,10 @@ def generate_token():
     }
 
     print("Generating Token")
-    token_request = requests.post("https://app.rkvst.io/archivist/iam/v1/appidp/token", headers=headers, data=params).json()
+    token_request = requests.post("https://dev-serhiy-0-avid.scratch-7.dev.wild.jitsuin.io/archivist/iam/v1/appidp/token", headers=headers, data=params).json()
 
     return token_request.get("access_token")
-    
+
 
 
 def main():
@@ -45,7 +45,7 @@ def main():
     print("Token Generated")
     
     arch = archivist.Archivist(
-        "https://app.rkvst.io",
+        "https://dev-serhiy-0-avid.scratch-7.dev.wild.jitsuin.io",
         auth=authtoken,
         )
     
