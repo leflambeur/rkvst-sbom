@@ -36,18 +36,13 @@ def main():
     command = sys.argv[1]
     asset_id = sys.argv[2]
     try:
-            authtoken = "eyJhbGciOiJSUzI1NiIsImtpZCI6InN0dW50aWRwIiwidHlwIjoiSldUIn0.eyJhdWQiOiJzdHVudC1pZHAiLCJlbWFpbCI6InN0dW50LWlkcEBqaXRzdWluLmNvbSIsImV4cCI6MTY2NjgwMTA4NCwiaWF0IjoxNjM1MjY1MDg0LCJpc3MiOiJzdHVudC1pZHBAaml0c3Vpbi5jb20iLCJqaXRfdGllciI6IlBSRU1JVU0iLCJuYW1lIjoic3R1bnQtaWRwQGppdHN1aW4uY29tIiwic3ViIjoic3R1bnQtaWRwQGppdHN1aW4uY29tIn0.cpFxiSg6EzB0-NEHNdCWs9axAAbVY2E1vmeB9cVWYmWY4BvDxssqevu0OGy9P-qxSOc5RXIrxFCQ2ULpryoW3-lfuqsMldLQtRdkdzaVatVb5oGNaycfU1ZVGg4PMyMACLDzhuedg7hHXlsHuNNfeeQAvWt3gV3GlhJU4D4aTJ17U6X5tZ7e1wEwvbGpb3OzaIFo4Q-0gZEvHGZ2_SNjtnJp5uIeJOakvbGs5SN2Pnzrz-UrY8IiB3CS45vIF-cHfJGTfEThOwVNNYKx5VARy7EuXttZ105XK7oiJ_YkNip-7ogHUn-bvR_Vrn4jG0meVEmTWs7KR2stbWFa9bdtBSMKaXGcIPJc25HTz6E0DivVZpcf9eM3PoXpYMV9bmVybObxnrh-r9Uc8D4EkehmPuhfmkH1zdVfGI99IgSaCJn6TcOOTQyF2INXtfohzrLC1QWM0JmaxcQDESHts0-p-o3QYmTuHhMm-2GKiagXh3PM2kKCjoVKE1FXZ7euPzGeR8L8GlgQ1oeBntd7qPpJqrDG69VoEoGD-vJdShKYUBjqAUXHpxW_wWsJ9nr7V5-6aFcTS-MAfcL_JFYiDualmSWRCmXMiKU703KNGmr4iQewP4Er1D1vHsFWQ4ilPbLdWpANUz2D1B4k8fc-pb4IQanocVSD5g-BTbmI4eErz5M"
-
-
+            authtoken = generate_token()
     except:
         exit(
             "ERROR: Auth token not found. Please check your CLIENT_ID and AUTH_TOKEN."
         )
 
     print("Token Generated")
-    
-    authtoken = "eyJhbGciOiJSUzI1NiIsImtpZCI6InN0dW50aWRwIiwidHlwIjoiSldUIn0.eyJhdWQiOiJzdHVudC1pZHAiLCJlbWFpbCI6InN0dW50LWlkcEBqaXRzdWluLmNvbSIsImV4cCI6MTY2NjgwMTA4NCwiaWF0IjoxNjM1MjY1MDg0LCJpc3MiOiJzdHVudC1pZHBAaml0c3Vpbi5jb20iLCJqaXRfdGllciI6IlBSRU1JVU0iLCJuYW1lIjoic3R1bnQtaWRwQGppdHN1aW4uY29tIiwic3ViIjoic3R1bnQtaWRwQGppdHN1aW4uY29tIn0.cpFxiSg6EzB0-NEHNdCWs9axAAbVY2E1vmeB9cVWYmWY4BvDxssqevu0OGy9P-qxSOc5RXIrxFCQ2ULpryoW3-lfuqsMldLQtRdkdzaVatVb5oGNaycfU1ZVGg4PMyMACLDzhuedg7hHXlsHuNNfeeQAvWt3gV3GlhJU4D4aTJ17U6X5tZ7e1wEwvbGpb3OzaIFo4Q-0gZEvHGZ2_SNjtnJp5uIeJOakvbGs5SN2Pnzrz-UrY8IiB3CS45vIF-cHfJGTfEThOwVNNYKx5VARy7EuXttZ105XK7oiJ_YkNip-7ogHUn-bvR_Vrn4jG0meVEmTWs7KR2stbWFa9bdtBSMKaXGcIPJc25HTz6E0DivVZpcf9eM3PoXpYMV9bmVybObxnrh-r9Uc8D4EkehmPuhfmkH1zdVfGI99IgSaCJn6TcOOTQyF2INXtfohzrLC1QWM0JmaxcQDESHts0-p-o3QYmTuHhMm-2GKiagXh3PM2kKCjoVKE1FXZ7euPzGeR8L8GlgQ1oeBntd7qPpJqrDG69VoEoGD-vJdShKYUBjqAUXHpxW_wWsJ9nr7V5-6aFcTS-MAfcL_JFYiDualmSWRCmXMiKU703KNGmr4iQewP4Er1D1vHsFWQ4ilPbLdWpANUz2D1B4k8fc-pb4IQanocVSD5g-BTbmI4eErz5M"
-
     
     arch = archivist.Archivist(
         "https://app.rkvst.io",
