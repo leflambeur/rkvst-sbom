@@ -20,9 +20,9 @@ jobs:
        - uses: actions/download-artifact@v2
        - uses: leflambeur/rkvst-sbom@v0.0.2d
          env:
-           CLIENT_ID: ${{ secrets.QUINT_CLIENT_ID }}
-           CLIENT_SECRET: ${{ secrets.QUINT_CLIENT_SECRET }}
+           CLIENT_ID: ${{ secrets.CLIENT_ID }}
+           CLIENT_SECRET: ${{ secrets.CLIENT_SECRET }}
          with:
            command: release
-           asset_id: assets/9900e40a-bd9f-41f8-a678-be0b5556b365
+           asset_id: assets/8477ddbd-3af2-434a-83ec-18c0bb3bd956
            attachments: '["yewnorosen-rkvst-sbom_latest.cyclonedx/yewnorosen-rkvst-sbom_latest.cyclonedx"]'
