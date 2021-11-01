@@ -389,7 +389,43 @@ class SoftwarePackage:
         return self.arch.events.create(
             self._asset["identity"], props=props, attrs=attrs, confirm=True
         )
+    
+    def vuln_report(
+        self,
+        vuln: dict,
+        attachments: Optional[list] = None,
+        custom_attrs: Optional[dict] = None,
+        ):
 
+        self._add_attachments(attachments)
+
+        props = {
+            "operation": "Record",
+            "behaviour": "RecordEvidence",
+        }
+        attrs = {
+            "arc_description": vuln["description"],
+            "arc_evidence": "Vulnerability Report",
+            "arc_display_type": "Vulnerability Report",
+            "vuln_component": vuln["component"],
+            "vuln_author": vuln["author"],
+            "vuln_target_version": vuln["target_version"],
+            "arc_attachments": [
+                {
+                    "arc_display_name": vuln["description"],
+                    "arc_attachment_identity": attachment["identity"],
+                    "arc_hash_value": attachment["hash"]["value"],
+                    "arc_hash_alg": attachment["hash"]["alg"],
+                }
+                for attachment in self._attachments
+            ],
+        }
+        if custom_attrs is not None:
+            attrs.update(custom_attrs)
+
+        return self.arch.events.create(
+            self._asset["identity"], props=props, attrs=attrs, confirm=True
+        )
     # EOL/Deprecation
     def deprecation(
         self,

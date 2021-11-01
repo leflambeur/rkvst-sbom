@@ -108,6 +108,13 @@ def main():
             vuln_update = package.vuln_update(vuln=vuln, attachments=attachments, custom_attrs=custom_attrs)
             print("Vulnerability Update Complete\n\n" + str(vuln_update))
 
+        case 'vuln_report':
+            vuln=json.loads(sys.argv[3])
+            attachments=json.loads(sys.argv[4])
+            custom_attrs=json.loads(sys.argv[5])
+            vuln_report = package.vuln_update(vuln=vuln, attachments=attachments, custom_attrs=custom_attrs)
+            print("Vulnerability Report Complete\n\n" + str(vuln_report))
+
         case 'deprecation':
             sbom_eol=json.loads(sys.argv[3])
             attachments=json.loads(sys.argv[4])
