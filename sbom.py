@@ -112,7 +112,7 @@ def main():
             vuln=json.loads(sys.argv[3])
             attachments=json.loads(sys.argv[4])
             custom_attrs=json.loads(sys.argv[5])
-            vuln_report = package.vuln_update(vuln=vuln, attachments=attachments, custom_attrs=custom_attrs)
+            vuln_report = package.vuln_report(vuln=vuln, attachments=attachments, custom_attrs=custom_attrs)
             print("Vulnerability Report Complete\n\n" + str(vuln_report))
 
         case 'deprecation':
