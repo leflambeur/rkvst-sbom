@@ -18,10 +18,10 @@ How you add these secrets will be unique to your environment, [here are instruct
 
 This will also depend on the environment you work in.
 
-For illustrative purposes here is an example from this repos `workflows` folder
+For illustrative purposes here is an example from this repos [workflows]() folder
 
 ```yaml
-       - uses: leflambeur/rkvst-sbom@v0.0.2b
+       - uses: leflambeur/rkvst-sbom@v0.0.5
          env:
            CLIENT_ID: ${{ secrets.CLIENT_ID }}
            CLIENT_SECRET: ${{ secrets.CLIENT_SECRET }}
