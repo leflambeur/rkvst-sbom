@@ -35,8 +35,8 @@ runs:
   args:
     - -e
     - -i
-    - -id ${{ inputs.asset_id }}
-    - -cmd ${{ inputs.command }}
+    - --assetID ${{ inputs.asset_id }}
+    - -command ${{ inputs.command }}
     - -req ${{ inputs.attrs }}
     - -evt ${{ inputs.custom_attrs }}
     - -sbom ${{ inputs.latest_sbom }}
