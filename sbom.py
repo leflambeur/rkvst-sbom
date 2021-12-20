@@ -3,7 +3,7 @@ import os
 import argparse
 
 from software_package import SoftwarePackage
-from archivist import archivist
+from archivist.archivist import Archivist
 
 def loadJSON(jsonInput):
     try:
@@ -64,7 +64,7 @@ def main():
 
     rkvst_url = args.url
 
-    arch = archivist(
+    arch = Archivist(
         rkvst_url,
         (client_id, client_secret),
     )
