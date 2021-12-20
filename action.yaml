@@ -33,10 +33,12 @@ runs:
   using: 'docker'
   image: 'Dockerfile'
   args:
-    - ${{ inputs.command }}
-    - ${{ inputs.asset_id }}
-    - ${{ inputs.attrs }}
+    - -e
+    - -i
+    - -id ${{ inputs.asset_id }}
+    - -cmd ${{ inputs.command }}
+    - -req ${{ inputs.attrs }}
+    - -evt ${{ inputs.custom_attrs }}
+    - -sbom ${{ inputs.latest_sbom }}
+    - -asset ${{ inputs.custom_asset_attrs }}
     - ${{ inputs.attachments }}
-    - ${{ inputs.custom_attrs }}
-    - ${{ inputs.latest_sbom }}
-    - ${{ inputs.custom_asset_attrs }}
