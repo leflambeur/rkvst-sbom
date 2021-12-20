@@ -36,9 +36,9 @@ runs:
     - -e
     - -i
     - --assetID ${{ inputs.asset_id }}
-    - -command ${{ inputs.command }}
-    - -req ${{ inputs.attrs }}
-    - -evt ${{ inputs.custom_attrs }}
-    - -sbom ${{ inputs.latest_sbom }}
-    - -asset ${{ inputs.custom_asset_attrs }}
+    - --command ${{ inputs.command }}
+    - --requiredAttributes ${{ inputs.attrs }}
+    - --customEvent ${{ inputs.custom_attrs }}
+    - --latestSBOM ${{ inputs.latest_sbom }}
+    - --customAsset ${{ inputs.custom_asset_attrs }}
     - ${{ inputs.attachments }}
