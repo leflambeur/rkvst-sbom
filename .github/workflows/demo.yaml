@@ -21,7 +21,7 @@ jobs:
        - uses: leflambeur/rkvst-sbom@v0.0.6c
          env:
            CLIENT_ID: ${{ secrets.CLIENT_ID }}
-           CLIENT_SECRET: ${{ secrets.CLIENT_SECRET }}
+           SECRET: ${{ secrets.SECRET }}
          with:
            command: release
            asset_id: assets/8477ddbd-3af2-434a-83ec-18c0bb3bd956
