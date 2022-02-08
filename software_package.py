@@ -30,19 +30,26 @@ class SoftwarePackage:
     # Asset Creation
     def create(
         self,
-        sbom_name: str,
-        sbom_description: str,
+        attrs: dict,
         *,
         attachments: Optional[list] = None,
         custom_attrs: Optional[dict] = None,
     ):
-        
+        self._add_attachments(attachments)
 
         attrs = {
-            "arc_display_name": sbom_name,
-            "arc_description": sbom_description,
+            "arc_display_name": attrs['name'],
+            "arc_description": attrs['description'],
             "arc_display_type": "Software Package",
-            "arc_attachments": attachments or [],
+            "arc_attachments": [
+                {
+                    "arc_display_name": attrs["description"],
+                    "arc_attachment_identity": attachment["identity"],
+                    "arc_hash_value": attachment["hash"]["value"],
+                    "arc_hash_alg": attachment["hash"]["alg"],
+                }
+                for attachment in self._attachments
+            ],
         }
         if custom_attrs is not None:
             attrs.update(custom_attrs)
@@ -74,7 +81,7 @@ class SoftwarePackage:
     # Release Events
     def release(
         self,
-        sbom: dict,
+        attrs: dict,
         *,
         attachments: Optional[list] = None,
         latest_sbom: Optional[dict] = None,
@@ -97,20 +104,20 @@ class SoftwarePackage:
         }
 
         if latest_sbom is None:
-            latest_sbom = sbom
+            latest_sbom = attrs
         attrs = {
-            "arc_description": sbom["description"],
+            "arc_description": attrs["description"],
             "arc_evidence": "Release",
             "arc_display_type": "Release",
-            "sbom_component": sbom["name"],
-            "sbom_hash": sbom["hash"],
-            "sbom_version": sbom["version"],
-            "sbom_author": sbom["author"],
-            "sbom_supplier": sbom["supplier"],
-            "sbom_uuid": sbom["uuid"],
+            "sbom_component": attrs["name"],
+            "sbom_hash": attrs["hash"],
+            "sbom_version": attrs["version"],
+            "sbom_author": attrs["author"],
+            "sbom_supplier": attrs["supplier"],
+            "sbom_uuid": attrs["uuid"],
             "arc_attachments": [
                 {
-                    "arc_display_name": sbom["description"],
+                    "arc_display_name": attrs["description"],
                     "arc_attachment_identity": attachment["identity"],
                     "arc_hash_value": attachment["hash"]["value"],
                     "arc_hash_alg": attachment["hash"]["alg"],
