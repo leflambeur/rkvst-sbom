@@ -8,6 +8,7 @@ from typing import Optional
 # pylint:disable=cyclic-import      # but pylint doesn't understand this feature
 
 from archivist import archivist as type_helper
+import xml.etree.ElementTree as ET
 
 
 class SoftwarePackage:
@@ -87,6 +88,7 @@ class SoftwarePackage:
         latest_sbom: Optional[dict] = None,
         custom_attrs: Optional[dict] = None,
         custom_asset_attrs: Optional[dict] = None,
+        refBom: Optional[bool],
     ):
         
         self._add_attachments(attachments)
@@ -150,7 +152,7 @@ class SoftwarePackage:
 
     def release_plan(
         self,
-        sbom_planned: dict,
+        attrs: dict,
         *,
         attachments: Optional[list] = None,
         custom_attrs: Optional[dict] = None,
@@ -162,17 +164,17 @@ class SoftwarePackage:
             "behaviour": "RecordEvidence",
         }
         attrs = {
-            "arc_description": sbom_planned["description"],
+            "arc_description": attrs["description"],
             "arc_evidence": "Release Plan",
             "arc_display_type": "Release Plan",
-            "sbom_planned_date": sbom_planned["date"],
-            "sbom_planned_captain": sbom_planned["captain"],
-            "sbom_planned_component": sbom_planned["name"],
-            "sbom_planned_version": sbom_planned["version"],
-            "sbom_planned_reference": sbom_planned["reference"],
+            "sbom_planned_date": attrs["date"],
+            "sbom_planned_captain": attrs["captain"],
+            "sbom_planned_component": attrs["name"],
+            "sbom_planned_version": attrs["version"],
+            "sbom_planned_reference": attrs["reference"],
             "arc_attachments": [
                 {
-                    "arc_display_name": sbom_planned["description"],
+                    "arc_display_name": attrs["description"],
                     "arc_attachment_identity": attachment["identity"],
                     "arc_hash_value": attachment["hash"]["value"],
                     "arc_hash_alg": attachment["hash"]["alg"],
@@ -189,7 +191,7 @@ class SoftwarePackage:
 
     def release_accepted(
         self,
-        sbom_accepted: dict,
+        attrs: dict,
         *,
         attachments: Optional[list] = None,
         custom_attrs: Optional[dict] = None,
@@ -201,18 +203,18 @@ class SoftwarePackage:
             "behaviour": "RecordEvidence",
         }
         attrs = {
-            "arc_description": sbom_accepted["description"],
+            "arc_description": attrs["description"],
             "arc_evidence": "Release Accepted",
             "arc_display_type": "Release Accepted",
-            "sbom_accepted_date": sbom_accepted["date"],
-            "sbom_accepted_captain": sbom_accepted["captain"],
-            "sbom_accepted_component": sbom_accepted["name"],
-            "sbom_accepted_version": sbom_accepted["version"],
-            "sbom_accepted_approver": sbom_accepted["approver"],
-            "sbom_accepted_vuln_reference": sbom_accepted["reference"],
+            "sbom_accepted_date": attrs["date"],
+            "sbom_accepted_captain": attrs["captain"],
+            "sbom_accepted_component": attrs["name"],
+            "sbom_accepted_version": attrs["version"],
+            "sbom_accepted_approver": attrs["approver"],
+            "sbom_accepted_vuln_reference": attrs["reference"],
             "arc_attachments": [
                 {
-                    "arc_display_name": sbom_accepted["description"],
+                    "arc_display_name": attrs["description"],
                     "arc_attachment_identity": attachment["identity"],
                     "arc_hash_value": attachment["hash"]["value"],
                     "arc_hash_alg": attachment["hash"]["alg"],
@@ -230,7 +232,7 @@ class SoftwarePackage:
     # Patch Events
     def patch(
         self,
-        sbom_patch: dict,
+        attrs: dict,
         *,
         attachments: Optional[list] = None,
         custom_attrs: Optional[dict] = None,
@@ -242,18 +244,18 @@ class SoftwarePackage:
             "behaviour": "RecordEvidence",
         }
         attrs = {
-            "arc_description": sbom_patch["description"],
+            "arc_description": attrs["description"],
             "arc_evidence": "Patch",
             "arc_display_type": "Patch",
-            "sbom_patch_component": sbom_patch["target_component"],
-            "sbom_patch_hash": sbom_patch["hash"],
-            "sbom_patch_target_version": sbom_patch["target_version"],
-            "sbom_patch_author": sbom_patch["author"],
-            "sbom_patch_supplier": sbom_patch["supplier"],
-            "sbom_patch_uuid": sbom_patch["uuid"],
+            "sbom_patch_component": attrs["target_component"],
+            "sbom_patch_hash": attrs["hash"],
+            "sbom_patch_target_version": attrs["target_version"],
+            "sbom_patch_author": attrs["author"],
+            "sbom_patch_supplier": attrs["supplier"],
+            "sbom_patch_uuid": attrs["uuid"],
             "arc_attachments": [
                 {
-                    "arc_display_name": sbom_patch["description"],
+                    "arc_display_name": attrs["description"],
                     "arc_attachment_identity": attachment["identity"],
                     "arc_hash_value": attachment["hash"]["value"],
                     "arc_hash_alg": attachment["hash"]["alg"],
@@ -270,7 +272,7 @@ class SoftwarePackage:
 
     def private_patch(
         self,
-        sbom_patch: dict,
+        attrs: dict,
         *,
         attachments: Optional[list] = None,
         custom_attrs: Optional[dict] = None,
@@ -282,19 +284,19 @@ class SoftwarePackage:
             "behaviour": "RecordEvidence",
         }
         attrs = {
-            "arc_description": sbom_patch["description"],
-            "arc_evidence": sbom_patch["private_id"] + "_Patch",
-            "arc_display_type": sbom_patch["private_id"] + "_Patch",
-            "sbom_patch_component": sbom_patch["target_component"],
-            "sbom_patch_hash": sbom_patch["hash"],
-            "sbom_patch_version": sbom_patch["target_version"],
-            "sbom_patch_author": sbom_patch["author"],
-            "sbom_patch_supplier": sbom_patch["supplier"],
-            "sbom_patch_uuid": sbom_patch["uuid"],
-            "sbom_patch_vuln_reference": sbom_patch["reference"],
+            "arc_description": attrs["description"],
+            "arc_evidence": attrs["private_id"] + "_Patch",
+            "arc_display_type": attrs["private_id"] + "_Patch",
+            "sbom_patch_component": attrs["target_component"],
+            "sbom_patch_hash": attrs["hash"],
+            "sbom_patch_version": attrs["target_version"],
+            "sbom_patch_author": attrs["author"],
+            "sbom_patch_supplier": attrs["supplier"],
+            "sbom_patch_uuid": attrs["uuid"],
+            "sbom_patch_vuln_reference": attrs["reference"],
             "arc_attachments": [
                 {
-                    "arc_display_name": sbom_patch["description"],
+                    "arc_display_name": attrs["description"],
                     "arc_attachment_identity": attachment["identity"],
                     "arc_hash_value": attachment["hash"]["value"],
                     "arc_hash_alg": attachment["hash"]["alg"],
@@ -313,7 +315,7 @@ class SoftwarePackage:
     # Vulnerability Events
     def vuln_disclosure(
         self,
-        vuln: dict,
+        attrs: dict,
         *,
         attachments: Optional[list] = None,
         custom_attrs: Optional[dict],
@@ -325,21 +327,21 @@ class SoftwarePackage:
             "behaviour": "RecordEvidence",
         }
         attrs = {
-            "arc_description": vuln["description"],
+            "arc_description": attrs["description"],
             "arc_evidence": "Vulnerability Disclosure",
             "arc_display_type": "Vulnerability Disclosure",
-            "vuln_name": vuln["name"],
-            "vuln_reference": vuln["reference"],
-            "vuln_id": vuln["id"],
-            "vuln_category": vuln["category"],
-            "vuln_severity": vuln["severity"],
-            "vuln_status": vuln["status"],
-            "vuln_author": vuln["author"],
-            "vuln_target_component": vuln["target_component"],
-            "vuln_target_version": vuln["target_version"],
+            "vuln_name": attrs["name"],
+            "vuln_reference": attrs["reference"],
+            "vuln_id": attrs["id"],
+            "vuln_category": attrs["category"],
+            "vuln_severity": attrs["severity"],
+            "vuln_status": attrs["status"],
+            "vuln_author": attrs["author"],
+            "vuln_target_component": attrs["target_component"],
+            "vuln_target_version": attrs["target_version"],
             "arc_attachments": [
                 {
-                    "arc_display_name": vuln["description"],
+                    "arc_display_name": attrs["description"],
                     "arc_attachment_identity": attachment["identity"],
                     "arc_hash_value": attachment["hash"]["value"],
                     "arc_hash_alg": attachment["hash"]["alg"],
@@ -357,7 +359,7 @@ class SoftwarePackage:
 
     def vuln_update(
         self,
-        vuln: dict,
+        attrs: dict,
         attachments: Optional[list] = None,
         custom_attrs: Optional[dict] = None,
     ):
@@ -368,21 +370,21 @@ class SoftwarePackage:
             "behaviour": "RecordEvidence",
         }
         attrs = {
-            "arc_description": vuln["description"],
+            "arc_description": attrs["description"],
             "arc_evidence": "Vulnerability Update",
             "arc_display_type": "Vulnerability Update",
-            "vuln_name": vuln["name"],
-            "vuln_reference": vuln["reference"],
-            "vuln_id": vuln["id"],
-            "vuln_category": vuln["category"],
-            "vuln_severity": vuln["severity"],
-            "vuln_status": vuln["status"],
-            "vuln_author": vuln["author"],
-            "vuln_target_component": vuln["target_component"],
-            "vuln_target_version": vuln["target_version"],
+            "vuln_name": attrs["name"],
+            "vuln_reference": attrs["reference"],
+            "vuln_id": attrs["id"],
+            "vuln_category": attrs["category"],
+            "vuln_severity": attrs["severity"],
+            "vuln_status": attrs["status"],
+            "vuln_author": attrs["author"],
+            "vuln_target_component": attrs["target_component"],
+            "vuln_target_version": attrs["target_version"],
             "arc_attachments": [
                 {
-                    "arc_display_name": vuln["description"],
+                    "arc_display_name": attrs["description"],
                     "arc_attachment_identity": attachment["identity"],
                     "arc_hash_value": attachment["hash"]["value"],
                     "arc_hash_alg": attachment["hash"]["alg"],
@@ -399,7 +401,8 @@ class SoftwarePackage:
     
     def vuln_report(
         self,
-        vuln: dict,
+        attrs: dict,
+        *,
         attachments: Optional[list] = None,
         custom_attrs: Optional[dict] = None,
         ):
@@ -411,15 +414,15 @@ class SoftwarePackage:
             "behaviour": "RecordEvidence",
         }
         attrs = {
-            "arc_description": vuln["description"],
+            "arc_description": attrs["description"],
             "arc_evidence": "Vulnerability Report",
             "arc_display_type": "Vulnerability Report",
-            "vuln_component": vuln["component"],
-            "vuln_author": vuln["author"],
-            "vuln_target_version": vuln["target_version"],
+            "vuln_component": attrs["component"],
+            "vuln_author": attrs["author"],
+            "vuln_target_version": attrs["target_version"],
             "arc_attachments": [
                 {
-                    "arc_display_name": vuln["description"],
+                    "arc_display_name": attrs["description"],
                     "arc_attachment_identity": attachment["identity"],
                     "arc_hash_value": attachment["hash"]["value"],
                     "arc_hash_alg": attachment["hash"]["alg"],
@@ -436,7 +439,7 @@ class SoftwarePackage:
     # EOL/Deprecation
     def deprecation(
         self,
-        sbom_eol: dict,
+        attrs: dict,
         *,
         attachments: Optional[list] = None,
         custom_attrs: Optional[dict] = None,
@@ -449,16 +452,16 @@ class SoftwarePackage:
         }
 
         attrs = {
-            "arc_description": sbom_eol["description"],
+            "arc_description": attrs["description"],
             "arc_evidence": "Deprecation",
             "arc_display_type": "Deprecation",
-            "sbom_eol_target_component": sbom_eol["target_component"],
-            "sbom_eol_target_version": sbom_eol["target_version"],
-            "sbom_eol_target_uuid": sbom_eol["target_uuid"],
-            "sbom_eol_target_date": sbom_eol["target_date"],
+            "sbom_eol_target_component": attrs["target_component"],
+            "sbom_eol_target_version": attrs["target_version"],
+            "sbom_eol_target_uuid": attrs["target_uuid"],
+            "sbom_eol_target_date": attrs["target_date"],
             "arc_attachments": [
                 {
-                    "arc_display_name": sbom_eol["description"],
+                    "arc_display_name": attrs["description"],
                     "arc_attachment_identity": attachment["identity"],
                     "arc_hash_value": attachment["hash"]["value"],
                     "arc_hash_alg": attachment["hash"]["alg"],
